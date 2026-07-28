@@ -31,7 +31,7 @@ def format_sessions_text(sessions):
         description = session.description or f"Session {session.id}"
         lines.append(f"{index}: {_sanitize_nextion_text(description)}")
 
-    return "\r".join(lines)
+    return "\r\n".join(lines)
 
 
 def update_sessions_list(ser, limit=5):
@@ -134,7 +134,7 @@ def nextion_worker(config):
         ser = serial.Serial(
             port=config["nextion_port"],
             baudrate=config.get("nextion_baud", 115200),
-            timeout=1
+            timeout=float(config.get("nextion_read_timeout", 0.05))
         )
 
         time.sleep(2)

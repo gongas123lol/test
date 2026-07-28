@@ -66,7 +66,7 @@ def test_format_sessions_text_uses_display_indices_and_sanitizes_names():
         FakeSession(9, None),
     ])
 
-    assert text == "0: Track 'A'\r1: Session 9"
+    assert text == "0: Track 'A'\r\n1: Session 9"
 
 
 def test_update_nextion_sends_expected_hardcoded_fields():

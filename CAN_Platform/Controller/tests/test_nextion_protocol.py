@@ -16,6 +16,13 @@ def test_parse_graph_params_message_normalizes_aliases():
     assert request.signals == ("vss", "afr", "advance", "pulse_width")
 
 
+def test_parse_graph_params_message_accepts_missing_pipe_terminator():
+    request = parse_nextion_message(b"PARAMS:1:rpm,afr,clt")
+
+    assert request.session_index == 1
+    assert request.signals == ("rpm", "afr", "clt")
+
+
 def test_parse_non_params_message_is_ignored():
     assert parse_nextion_message(b"\x01\xff\xff\xff") is None
 
