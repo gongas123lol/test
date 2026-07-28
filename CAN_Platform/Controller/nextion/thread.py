@@ -24,11 +24,20 @@ def _sanitize_nextion_text(value):
     return str(value).replace('"', "'").replace("\n", " ").replace("\r", " ")
 
 
+def _display_session_description(session, index):
+    description = session.description or f"Session {session.id}"
+
+    if description.startswith("[MOCK] "):
+        description = description[len("[MOCK] "):]
+
+    return description
+
+
 def format_sessions_text(sessions):
     lines = []
 
     for index, session in enumerate(sessions):
-        description = session.description or f"Session {session.id}"
+        description = _display_session_description(session, index)
         lines.append(f"{index}: {_sanitize_nextion_text(description)}")
 
     return "\r\n".join(lines)

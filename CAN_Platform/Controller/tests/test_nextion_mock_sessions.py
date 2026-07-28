@@ -58,9 +58,9 @@ def test_seed_mock_sessions_creates_recent_sessions_and_vehicle_rows():
         assert count_rows(db_path, "sessions") == 3
         assert count_rows(db_path, "vehicle_state") == 36
         assert [session.description for session in sessions] == [
-            f"{MOCK_PREFIX} 0: Sprint pull",
-            f"{MOCK_PREFIX} 1: Autocross laps",
-            f"{MOCK_PREFIX} 2: Heat soak",
+            f"{MOCK_PREFIX} Session 0",
+            f"{MOCK_PREFIX} Session 1",
+            f"{MOCK_PREFIX} Session 2",
         ]
 
 
@@ -86,7 +86,7 @@ def test_seed_mock_sessions_replaces_only_previous_mock_sessions():
         assert count_rows(db_path, "sessions") == 2
         assert count_rows(db_path, "vehicle_state") == 5
         assert any(session.id == real_session.id for session in sessions)
-        assert any(session.description == f"{MOCK_PREFIX} 0: Sprint pull" for session in sessions)
+        assert any(session.description == f"{MOCK_PREFIX} Session 0" for session in sessions)
 
 
 def test_nextion_graph_payload_uses_mock_session_display_index_and_signals():
@@ -99,6 +99,6 @@ def test_nextion_graph_payload_uses_mock_session_display_index_and_signals():
 
         payload = build_graph_payload(GraphRequest(1, ("rpm", "afr", "clt")))
 
-        assert payload["session"].description == f"{MOCK_PREFIX} 1: Autocross laps"
+        assert payload["session"].description == f"{MOCK_PREFIX} Session 1"
         assert len(payload["rows"]) == 9
         assert set(payload["rows"][0]) == {"timestamp", "rpm", "afr", "clt"}

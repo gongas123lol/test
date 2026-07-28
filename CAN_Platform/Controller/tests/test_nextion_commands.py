@@ -69,6 +69,15 @@ def test_format_sessions_text_uses_display_indices_and_sanitizes_names():
     assert text == "0: Track 'A'\r\n1: Session 9"
 
 
+def test_format_sessions_text_hides_mock_prefix():
+    text = format_sessions_text([
+        FakeSession(10, "[MOCK] Session 0"),
+        FakeSession(9, "[MOCK] Session 1"),
+    ])
+
+    assert text == "0: Session 0\r\n1: Session 1"
+
+
 def test_update_nextion_sends_expected_hardcoded_fields():
     ser = FakeSerial()
 

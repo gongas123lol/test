@@ -336,7 +336,8 @@ Mock sessions for the real Nextion controls:
 python seed_nextion_mock_sessions.py --sessions 5 --samples 180
 ```
 
-This creates deterministic `[MOCK]` sessions in `ecu_data.db`, each with
+This creates deterministic `[MOCK]` sessions in `ecu_data.db`, displayed on
+the Nextion as `Session 0`, `Session 1`, etc. Each session includes
 vehicle-state rows for RPM, AFR, CLT, TPS, VSS, MAP, boost and the remaining
 dashboard fields. Re-running the command replaces only previous `[MOCK]`
 sessions and keeps real acquisition sessions.

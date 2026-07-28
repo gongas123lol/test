@@ -12,7 +12,6 @@ MOCK_PREFIX = "[MOCK]"
 
 MOCK_SESSION_PROFILES = (
     {
-        "name": "Sprint pull",
         "rpm_scale": 1.00,
         "rpm_offset": 0,
         "vss_scale": 1.00,
@@ -21,7 +20,6 @@ MOCK_SESSION_PROFILES = (
         "tps_scale": 1.00,
     },
     {
-        "name": "Autocross laps",
         "rpm_scale": 0.86,
         "rpm_offset": 450,
         "vss_scale": 0.72,
@@ -30,7 +28,6 @@ MOCK_SESSION_PROFILES = (
         "tps_scale": 1.12,
     },
     {
-        "name": "Heat soak",
         "rpm_scale": 0.56,
         "rpm_offset": 700,
         "vss_scale": 0.38,
@@ -39,7 +36,6 @@ MOCK_SESSION_PROFILES = (
         "tps_scale": 0.62,
     },
     {
-        "name": "Cruise",
         "rpm_scale": 0.42,
         "rpm_offset": 1800,
         "vss_scale": 0.82,
@@ -48,7 +44,6 @@ MOCK_SESSION_PROFILES = (
         "tps_scale": 0.46,
     },
     {
-        "name": "Boost check",
         "rpm_scale": 0.94,
         "rpm_offset": 200,
         "vss_scale": 0.88,
@@ -232,7 +227,7 @@ def seed_mock_sessions(
                 display_index % len(MOCK_SESSION_PROFILES)
             ]
             start_time = now - display_index * spacing_seconds
-            description = f"{MOCK_PREFIX} {display_index}: {profile['name']}"
+            description = f"{MOCK_PREFIX} Session {display_index}"
 
             cursor.execute(
                 """
