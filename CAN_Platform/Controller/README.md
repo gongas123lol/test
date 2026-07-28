@@ -330,6 +330,26 @@ overridden from the command line:
   --samples 240 --signals rpm,afr,clt --redline 7500
 ```
 
+Mock sessions for the real Nextion controls:
+
+```bash
+python seed_nextion_mock_sessions.py --sessions 5 --samples 180
+```
+
+This creates deterministic `[MOCK]` sessions in `ecu_data.db`, each with
+vehicle-state rows for RPM, AFR, CLT, TPS, VSS, MAP, boost and the remaining
+dashboard fields. Re-running the command replaces only previous `[MOCK]`
+sessions and keeps real acquisition sessions.
+
+After seeding, use the normal Nextion graph controls. The display index shown
+in the `sessions` field maps to `PARAMS:<index>:<signals>|`; examples:
+
+```text
+PARAMS:0:rpm,afr,clt,tps,vss|
+PARAMS:1:rpm,afr,clt|
+PARAMS:2:vss,tps,map|
+```
+
 ## Troubleshooting
 
 Check whether configured devices exist:
