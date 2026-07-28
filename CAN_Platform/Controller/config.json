@@ -1,6 +1,6 @@
 {
     "type": "rusefi_can",
-    "mode": "no_display",
+    "mode": "nextion",
     "com": "/dev/serial/by-id/usb-Espressif_USB_JTAG_serial_debug_unit_58:E6:C5:10:77:9C-if00",
     "baud_rate": 2000000,
     "command": "a",
